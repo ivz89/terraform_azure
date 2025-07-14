@@ -26,7 +26,7 @@ provider "azurerm" {
   tenant_id = "f995c4e8-3b73-4ede-9146-2234a3c136d7"
   subscription_id = "163cf7ea-6dee-490d-9534-f0b213a97c41"
   client_id       = "3ee020b7-394b-4ec4-8376-bb29070570ee"
-  use_oidc        = true  
+  use_oidc        = true   
 }
 
 provider "azuread" {
