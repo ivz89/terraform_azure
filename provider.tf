@@ -25,5 +25,18 @@ provider "azurerm" {
   }
 }
 
-provider "azuread" { 
+provider "azuread" {
+}
+
+
+variable "oidc_token" {}
+variable "oidc_token_file_path" {}
+variable "oidc_request_token" {}
+variable "oidc_request_url" {}
+variable "ado_pipeline_service_connection_id" {}
+
+provider "azurerm" {
+  features {}
+
+  use_oidc        = true
 }
