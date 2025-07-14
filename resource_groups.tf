@@ -8,7 +8,7 @@ resource "azurerm_resource_group" "sentinel" {
 
 
 resource "azurerm_resource_group" "sentinel" {
-  name     = "iv-rg-GithubTest"
+  name     = "iv-rg-GithubTest" 
   location = var.azure_region
 
   tags = local.tags
