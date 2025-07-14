@@ -7,7 +7,7 @@ resource "azurerm_resource_group" "sentinel" {
 }
 
 
-resource "azurerm_resource_group" "sentinel" {
+resource "azurerm_resource_group" "github" {
   name     = "iv-rg-GithubTest" 
   location = var.azure_region
 

@@ -23,5 +23,22 @@ provider "azurerm" {
       delete_os_disk_on_deletion = true
     }
   }
-   use_oidc        = true
+}
+
+provider "azuread" {
+}
+
+
+variable "oidc_token" {}
+variable "oidc_token_file_path" {}
+variable "oidc_request_token" {}
+variable "oidc_request_url" {}
+variable "ado_pipeline_service_connection_id" {}
+
+provider "azurerm" {
+  features {}
+  tenant_id = "f995c4e8-3b73-4ede-9146-2234a3c136d7"
+  subscription_id = "163cf7ea-6dee-490d-9534-f0b213a97c41"
+  client_id       = "3ee020b7-394b-4ec4-8376-bb29070570ee"
+  use_oidc        = true
 }
