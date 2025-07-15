@@ -87,3 +87,8 @@ locals {
   }
 }
 
+variable "certificate_base64" {
+  description = "Base64-encoded content of the certificate"
+  type        = string
+  sensitive   = true
+}

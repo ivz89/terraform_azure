@@ -39,7 +39,7 @@ resource "azurerm_key_vault_certificate" "vpncert" {
   tags         = {}
 
   certificate {
-    contents = filebase64("C:\\Users\\ivavor\\OneDrive - Orange Cyberdefense\\From My Docs\\Cloud Lab\\root.pfx")
+    contents = var.certificate_base64
     password = ""
   }
 
