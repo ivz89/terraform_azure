@@ -34,7 +34,6 @@ jobs:
         echo 'certificate_base64 = <<EOF' > terraform.tfvars
         echo "${{ secrets.TF_CERTIFICATE_BASE64 }}" >> terraform.tfvars
         echo 'EOF' >> terraform.tfvars
-        echo 'certificate_password = "${{ secrets.TF_CERTIFICATE_PASSWORD }}"' >> terraform.tfvars
 
     - name: Terraform Init
       run: terraform init
