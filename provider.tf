@@ -11,7 +11,6 @@ terraform {
     container_name       = "lab"
     key                  = "terraform.tfstate"
     use_oidc = true
-    #access_key           = "sp=racwdyti&st=2025-02-09T18:45:51Z&se=2025-02-10T02:45:51Z&spr=https&sv=2022-11-02&sr=b&sig=ugXvdGJC9q7D6MXv59qd6wiQRXr8bJ9CRjghn409eZ8%3D"
   }  
 }
 

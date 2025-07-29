@@ -44,7 +44,7 @@ resource "azurerm_network_interface" "nic" {
   }
 
   #tags = local.tags
-
+ 
 }
 
 resource "azurerm_windows_virtual_machine" "vm" {
