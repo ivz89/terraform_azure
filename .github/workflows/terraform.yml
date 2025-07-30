@@ -28,7 +28,7 @@ jobs:
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
-
+ 
     - name: Create terraform.tfvars
       run: |
         echo 'certificate_base64 = <<EOF' > terraform.tfvars
