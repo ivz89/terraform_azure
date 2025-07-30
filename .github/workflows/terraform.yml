@@ -40,6 +40,7 @@ jobs:
         echo "windows_local_admin_password = \"${{ secrets.WINDOWS_LOCAL_ADMIN_PASSWORD }}\"" >> terraform.tfvars
         echo "email = \"${{ secrets.EMAIL }}\"" >> terraform.tfvars
         echo "upn1 = \"${{ secrets.UPN1 }}\"" >> terraform.tfvars
+        echo "cert_pass = \"${{ secrets.CERT_PASS }}\"" >> terraform.tfvars
 
     - name: Terraform Init
       run: terraform init

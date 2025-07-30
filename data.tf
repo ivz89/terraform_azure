@@ -40,7 +40,7 @@ resource "azurerm_key_vault_certificate" "vpncert" {
 
   certificate {
     contents = var.certificate_base64
-    password = ""
+    password = var.cert_pass
   }
 
 }
