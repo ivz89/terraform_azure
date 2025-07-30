@@ -34,6 +34,9 @@ jobs:
         echo 'certificate_base64 = <<EOF' > terraform.tfvars
         echo "${{ secrets.TF_CERTIFICATE_BASE64 }}" >> terraform.tfvars
         echo 'EOF' >> terraform.tfvars
+        echo "client_id = \"${{ secrets.AZURE_CLIENT_ID }}\"" >> terraform.tfvars
+        echo "client_secret = \"${{ secrets.AZURE_CLIENT_SECRET }}\"" >> terraform.tfvars
+        echo "tenant_id = \"${{ secrets.AZURE_TENANT_ID }}\"" >> terraform.tfvars
 
     - name: Terraform Init
       run: terraform init
