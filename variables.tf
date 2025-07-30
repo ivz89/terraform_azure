@@ -37,7 +37,16 @@ variable "managed_identity_ids" {
 
 variable "tenant_id" {
   type    = string
-  default = "f995c4e8-3b73-4ede-9146-2234a3c136d7"
+  sensitive   = true
+}
+
+variable "client_id" {
+  type    = string
+  sensitive   = true
+}
+variable "client_secret" {
+  type    = string
+  sensitive   = true
 }
 
 
