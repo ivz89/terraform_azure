@@ -37,6 +37,8 @@ jobs:
         echo "client_id = \"${{ secrets.AZURE_CLIENT_ID }}\"" >> terraform.tfvars
         echo "client_secret = \"${{ secrets.AZURE_CLIENT_SECRET }}\"" >> terraform.tfvars
         echo "tenant_id = \"${{ secrets.AZURE_TENANT_ID }}\"" >> terraform.tfvars
+        echo "email = \"${{ secrets.EMAIL }}\"" >> terraform.tfvars
+        echo "upn1 = \"${{ secrets.UPN1 }}\"" >> terraform.tfvars
 
     - name: Terraform Init
       run: terraform init
