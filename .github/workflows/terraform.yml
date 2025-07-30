@@ -28,12 +28,19 @@ jobs:
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
-
+ 
     - name: Create terraform.tfvars
       run: |
         echo 'certificate_base64 = <<EOF' > terraform.tfvars
         echo "${{ secrets.TF_CERTIFICATE_BASE64 }}" >> terraform.tfvars
         echo 'EOF' >> terraform.tfvars
+        echo "client_id = \"${{ secrets.AZURE_CLIENT_ID }}\"" >> terraform.tfvars
+        echo "client_secret = \"${{ secrets.AZURE_CLIENT_SECRET }}\"" >> terraform.tfvars
+        echo "tenant_id = \"${{ secrets.AZURE_TENANT_ID }}\"" >> terraform.tfvars
+        echo "windows_local_admin_password = \"${{ secrets.WINDOWS_LOCAL_ADMIN_PASSWORD }}\"" >> terraform.tfvars
+        echo "email = \"${{ secrets.EMAIL }}\"" >> terraform.tfvars
+        echo "upn1 = \"${{ secrets.UPN1 }}\"" >> terraform.tfvars
+        echo "cert_pass = \"${{ secrets.CERT_PASS }}\"" >> terraform.tfvars
 
     - name: Terraform Init
       run: terraform init
