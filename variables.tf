@@ -49,12 +49,21 @@ variable "client_secret" {
   sensitive   = true
 }
 
+variable "email" {
+  type    = string
+  sensitive   = true
+}
+
+variable "upn1" {
+  type    = string
+  sensitive   = true
+}
 
 locals {
 
   tags = {
     environment = "TF Lab"
-    owner       = "OCD"
+    owner       = "OAT"
     department  = "Cloud"
     location    = "Norway East"
     user        = "Ivan"

@@ -59,7 +59,7 @@ resource "azurerm_virtual_network_peering" "tfvnet1-to-vnet_shared" {
   name                      = "tfvnet1-to-vnet_shared"
   resource_group_name       = azurerm_resource_group.tflabs.name
   virtual_network_name      = azurerm_virtual_network.tfvnet1.name
-  remote_virtual_network_id = "/subscriptions/0fbb46ed-4b79-43d9-9e6a-795103de4f9d/resourceGroups/rg-vnet_shared/providers/Microsoft.Network/virtualNetworks/vnet_shared"
+  remote_virtual_network_id = "/subscriptions/1111111111111/resourceGroups/rg-vnet_shared/providers/Microsoft.Network/virtualNetworks/vnet_shared"
   use_remote_gateways       = true
 }
 

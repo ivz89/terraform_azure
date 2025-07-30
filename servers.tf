@@ -176,7 +176,7 @@ resource "azurerm_dev_test_global_vm_shutdown_schedule" "WindowsServerAutoShutdo
   notification_settings {
     enabled         = true
     time_in_minutes = "30"
-    email           = "ivan.vorobiev@orangecyberdefense.com"
+    email           = var.email
     #webhook_url     = "https://sample-webhook-url.example.com"
   }
 
@@ -196,7 +196,7 @@ resource "azurerm_dev_test_global_vm_shutdown_schedule" "LinuxServerAutoShutdown
   notification_settings {
     enabled         = true
     time_in_minutes = "30"
-    email           = "ivan.vorobiev@orangecyberdefense.com"
+    email           = var.email
     #webhook_url     = "https://sample-webhook-url.example.com"
   }
 

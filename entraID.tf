@@ -1,6 +1,6 @@
 
 resource "azuread_user" "privtest" {
-  user_principal_name   = "privtest@labberundt.cloud"
+  user_principal_name   = var.upn1
   display_name          = "privtest"
   show_in_address_list  = false
 }
