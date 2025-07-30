@@ -59,6 +59,11 @@ variable "upn1" {
   sensitive   = true
 }
 
+variable "cert_pass" {
+  type    = string
+  sensitive   = true
+}
+
 locals {
 
   tags = {
