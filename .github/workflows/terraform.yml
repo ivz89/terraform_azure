@@ -1,0 +1,53 @@
+name: Terraform Deploy
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  id-token: write
+  contents: read
+  pull-requests: write
+
+env:
+  ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+  ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+  ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
+
+    - name: Create terraform.tfvars
+      run: |
+        echo "certificate_base64 = <<EOF" > terraform.tfvars
+        echo "${{ secrets.TF_CERTIFICATE_BASE64 }}" >> terraform.tfvars
+        echo "EOF" >> terraform.tfvars
+        echo "windows_local_admin_password = \"${{ secrets.WINDOWS_LOCAL_ADMIN_PASSWORD }}\"" >> terraform.tfvars
+        echo "tenant_id = \"${{ secrets.AZURE_TENANT_ID }}\"" >> terraform.tfvars
+        echo "client_id = \"${{ secrets.AZURE_CLIENT_ID }}\"" >> terraform.tfvars
+        echo "client_secret = \"${{ secrets.AZURE_CLIENT_SECRET }}\"" >> terraform.tfvars
+        echo "email = \"${{ secrets.EMAIL }}\"" >> terraform.tfvars
+        echo "upn1 = \"${{ secrets.UPN1 }}\"" >> terraform.tfvars
+        echo "cert_pass = \"${{ secrets.CERT_PASS }}\"" >> terraform.tfvars
+
+    - name: Terraform Init
+      run: terraform init
+
+    - name: Terraform Plan
+      run: terraform plan -var-file="terraform.tfvars"
+
+    - name: Terraform Apply
+      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      run: terraform apply -auto-approve -var-file="terraform.tfvars"
