@@ -1,4 +1,4 @@
-# Azure Infrastructure with Terraform
+# Azure Infrastructure with Terraform & GitHub Actions
 
 This repository contains Terraform configurations to deploy Azure infrastructure using automated workflows via GitHub.
 
@@ -34,7 +34,7 @@ This repository is designed to be deployed through GitHub workflows that automat
 - `.terraform.lock.hcl` is committed to ensure consistent provider versions.
 
 
-## Notes for Workstation Management (Optional)
+## Notes for Workstation Management
 
 If you want to run Terraform locally for testing or troubleshooting:
 

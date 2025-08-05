@@ -4,6 +4,51 @@ variable "azure_region" {
 
 }
 
+variable "prefix" {
+  type    = string
+  default = "IV"  # Or set this when calling the module
+}
+
+
+
+variable "resource_group_name_Network" {
+  type = string
+  default = "Network"
+}
+
+variable "location" {
+  type = string
+  default = "norwayeast"
+}
+
+variable "vnet_cidr" {
+  type = string
+  default = "10.0.0.0/16"
+}
+
+variable "network_address_space" {
+  type = list(string)
+  default = ["10.1.0.0/20","10.2.0.0/20"]
+}
+
+variable "subnet_prefixes" {
+  type = list(string)
+  default = ["10.1.0.0/20", "10.2.2.0/24"]
+}
+
+variable "subnet_names" {
+  type = list(string)
+  default = ["Tfsubnet1", "GatewaySubnet"]
+}
+
+
+
+
+
+
+
+
+
 variable "windows_local_admin_user" {
 
   type    = string
@@ -93,10 +138,10 @@ locals {
       offer     = "sql2022-ws2022"
       sku       = "sqldev-gen2"
     }
-    centos = {
-      publisher = "eurolinuxspzoo1620639373013"
-      offer     = "centos-8-5-free"
-      sku       = "centos-8-5-free"
+    oracle = {
+      publisher = "oracle"
+      offer     = "oracle-linux"
+      sku       = "ol94-lvm"
     }
     ubuntu = {
       publisher = "Canonical"
