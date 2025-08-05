@@ -34,7 +34,7 @@ resource "azurerm_virtual_network_gateway" "vng" {
 
   lifecycle {
     ignore_changes = [
-      vpn_client_configuration[0].root_certificate[0].public_cert_data
+      vpn_client_configuration
     ]
   }
 
