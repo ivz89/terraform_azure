@@ -12,4 +12,4 @@ resource "azurerm_resource_group" "b2b_automation_test" {
   location = var.azure_region
 
   tags = local.tags
-}
+} 
