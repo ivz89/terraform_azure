@@ -22,7 +22,7 @@ provider "azurerm" {
       delete_os_disk_on_deletion = true
     }
   }
-//  subscription_id = var.sub_id
+ // subscription_id = var.sub_id
   use_oidc        = true   
 }
 
