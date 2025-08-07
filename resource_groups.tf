@@ -7,7 +7,7 @@ resource "azurerm_resource_group" "sentinel" {
 }
 
 
-resource "azurerm_resource_group" "sentinel" {
+resource "azurerm_resource_group" "b2b_automation_test" {
   name     = "rg-automation-test"
   location = var.azure_region
 
