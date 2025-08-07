@@ -85,6 +85,11 @@ variable "tenant_id" {
   sensitive   = true
 }
 
+variable "sub_id" {
+  type    = string
+  sensitive   = true
+}
+
 variable "client_id" {
   type    = string
   sensitive   = true
@@ -108,6 +113,8 @@ variable "cert_pass" {
   type    = string
   sensitive   = true
 }
+
+
 
 locals {
 
