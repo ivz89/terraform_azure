@@ -17,3 +17,56 @@ locals {
     #"LogCollector-02" = { ip = "10.0.0.34", vmsize = "Standard_D2_v4", os = local.os.centos, subnet = module.network_core.subnet_ids["VMsubnet"],  identity = "SystemAssigned" }
   }
 }
+
+locals {
+
+  tags = {
+    environment = "TF Lab"
+    owner       = "OAT"
+    department  = "Cloud"
+    location    = "Norway East"
+    user        = "Ivan"
+  }
+
+  os = {
+    #Publisher = Publisher ID
+    #Offer = Product ID
+    #Sku = Plan ID
+    wserver = {
+      publisher = "MicrosoftWindowsServer"
+      offer     = "WindowsServer"
+      sku       = "2019-Datacenter"
+
+    }
+    w10 = {
+      publisher = "MicrosoftWindowsDesktop"
+      offer     = "Windows-10"
+      sku       = "win10-21h2-pro-g2"
+
+    }
+    mssql = {
+      publisher = "microsoftsqlserver"
+      offer     = "sql2022-ws2022"
+      sku       = "sqldev-gen2"
+
+    }
+    oracle = {
+      publisher = "ntegralinc1586961136942"
+      offer     = "ntg_oracle_9"
+      sku       = "ntg_oracle_9"
+
+    }
+    ubuntu = {
+      publisher = "Canonical"
+      offer     = "0001-com-ubuntu-server-focal"
+      sku       = "20_04-lts-gen2"
+
+    }
+    kali = {
+      publisher = "kali-linux"
+      offer     = "kali"
+      sku       = "kali-2023-2"
+
+    }
+  }
+}
