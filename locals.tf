@@ -51,9 +51,10 @@ locals {
 
     }
     oracle = {
-      publisher = "supportedimagesllc1615494954880"
-      offer     = "oracle-linux-9"
-      sku       = "oracle-linux-9"
+      publisher = "ntegralinc1586961136942"
+      offer     = "ntg_oracle_8_10"
+      sku       = "ntg_oracle_8_10"
+      version   = "Latest"
       requires_plan = true
 
     }
@@ -61,6 +62,7 @@ locals {
       publisher = "Canonical"
       offer     = "0001-com-ubuntu-server-focal"
       sku       = "20_04-lts-gen2"
+      version   = "Latest"
       requires_plan = false
 
     }
@@ -68,6 +70,7 @@ locals {
       publisher = "kali-linux"
       offer     = "kali"
       sku       = "kali-2023-2"
+      version   = "Latest"
       requires_plan = false
 
     }
