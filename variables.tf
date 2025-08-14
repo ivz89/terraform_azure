@@ -146,9 +146,9 @@ locals {
       sku       = "sqldev-gen2"
     }
     oracle = {
-      publisher = "oracle"
-      offer     = "oracle-linux"
-      sku       = "ol94-lvm"
+      publisher = "ntegralinc1586961136942"
+      offer     = "ntg_oracle_9"
+      sku       = "ntg_oracle_9"
     }
     ubuntu = {
       publisher = "Canonical"
