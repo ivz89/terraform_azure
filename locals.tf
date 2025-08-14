@@ -51,9 +51,9 @@ locals {
 
     }
     oracle = {
-      publisher = "ntegralinc1586961136942"
-      offer     = "ntg_oracle_9"
-      sku       = "ntg_oracle_9"
+      publisher = "supportedimagesllc1615494954880"
+      offer     = "oracle-linux-9"
+      sku       = "oracle-linux-9"
 
     }
     ubuntu = {
