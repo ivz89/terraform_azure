@@ -7,9 +7,7 @@ locals {
     #"MSSQL-01" = { ip = "10.0.0.23", vmsize = "Standard_D2_v4", os = local.os.mssql, subnet = module.network_core.subnet_ids["VMsubnet"],  identity = "SystemAssigned" }
 
   }
-}
 
-locals {
   ComponentServersLinux = {
     "LogCollector-01" = { ip = "10.0.0.31", vmsize = "Standard_D2_v4", os = local.os.oracle, subnet = module.network_core.subnet_ids["VMsubnet"],  identity = "SystemAssigned" }
     #"Attckr-01"  = { ip = "10.0.0.32", vmsize = "Standard_F4s_v2", os = local.os.kali, subnet = module.network_core.subnet_ids["VMsubnet"] }
@@ -32,6 +30,7 @@ locals {
     #Publisher = Publisher ID
     #Offer = Product ID
     #Sku = Plan ID
+    
     wserver = {
       publisher = "MicrosoftWindowsServer"
       offer     = "WindowsServer"
@@ -50,13 +49,13 @@ locals {
       sku       = "sqldev-gen2"
 
     }
-    oracle = {
-      publisher = "ntegralinc1586961136942"
-      offer     = "ntg_oracle_8_10"
-      sku       = "ntg_oracle_8_10"
-      version   = "Latest"
-      requires_plan = true
 
+    oracle = {
+      publisher     = "ntegralinc1586961136942"
+      offer         = "ntg_oracle_8_7"
+      sku           = "ntg_oracle_8_7"
+      version       = "1.0.3"
+      requires_plan = true
     }
     ubuntu = {
       publisher = "Canonical"
