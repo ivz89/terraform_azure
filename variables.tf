@@ -134,31 +134,37 @@ locals {
       publisher = "MicrosoftWindowsServer"
       offer     = "WindowsServer"
       sku       = "2019-Datacenter"
+      custom_tag= "Windows"
     }
     w10 = {
       publisher = "MicrosoftWindowsDesktop"
       offer     = "Windows-10"
       sku       = "win10-21h2-pro-g2"
+      custom_tag= "Windows"
     }
     mssql = {
       publisher = "microsoftsqlserver"
       offer     = "sql2022-ws2022"
       sku       = "sqldev-gen2"
+      custom_tag= "Windows"
     }
     oracle = {
       publisher = "ntegralinc1586961136942"
       offer     = "ntg_oracle_9"
       sku       = "ntg_oracle_9"
+      custom_tag= "Linux"
     }
     ubuntu = {
       publisher = "Canonical"
       offer     = "0001-com-ubuntu-server-focal"
       sku       = "20_04-lts-gen2"
+      custom_tag= "Linux"
     }
     kali = {
       publisher = "kali-linux"
       offer     = "kali"
       sku       = "kali-2023-2"
+      custom_tag= "Linux"
     }
   }
 }
