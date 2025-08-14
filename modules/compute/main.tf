@@ -92,11 +92,27 @@ resource "azurerm_linux_virtual_machine" "linuxvm" {
     storage_account_uri = var.storage_account_uri
   }
 
+  dynamic "identity" {
+    for_each = contains(keys(each.value), "identity") ? [each.value.identity] : []
+    content {
+      type = identity.value
+    }
+  }
   lifecycle {
     ignore_changes = [identity]
   }
 
   depends_on = [azurerm_resource_group.VMs]
+}
+
+resource "azurerm_virtual_machine_extension" "aad_login" {
+  for_each = azurerm_linux_virtual_machine.linuxvm
+
+  name                 = "AADLoginForLinux"
+  virtual_machine_id   = each.value.id
+  publisher            = "Microsoft.Azure.ActiveDirectory.LinuxSSH"
+  type                 = "AadLoginForLinux"
+  type_handler_version = "1.0"
 }
 
 resource "azurerm_dev_test_global_vm_shutdown_schedule" "vm_shutdown" {
