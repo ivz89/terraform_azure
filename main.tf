@@ -47,9 +47,6 @@ module "compute" {
   admin_password          = var.windows_local_admin_password
   email                   = var.email
   storage_account_uri     = module.storage.storage_account_primary_blob_endpoint
-
-  vm_map = merge(
-    local.ComponentServersWindows,
-    local.ComponentServersLinux
-  )
+  ComponentServersLinux   = local.ComponentServersLinux
+  ComponentServersWindows = local.ComponentServersWindows
 }

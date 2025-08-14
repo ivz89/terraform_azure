@@ -7,11 +7,6 @@ variable "resource_group_name_VMs" {
   default     = "iv-dev-rg-VM"
 }
 
-variable "vm_map" {
-  description = "Map of VMs to create"
-  type        = map(any)
-}
-
 variable "admin_username" {
   sensitive   = true
 }
@@ -34,4 +29,12 @@ variable "network_nsgs" {
 
 variable "network_subnets" {
   type = map(string)
+}
+
+variable "ComponentServersLinux" {
+  type = map(any)
+}
+
+variable "ComponentServersWindows" {
+  type = map(any)
 }

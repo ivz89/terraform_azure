@@ -4,7 +4,7 @@ resource "azurerm_resource_group" "VMs" {
 }
 
 resource "azurerm_network_interface" "nic" {
-  for_each            = var.vm_map
+  for_each            = merge(var.ComponentServersWindows, var.ComponentServersLinux)
   name                = "nic-${each.key}"
   location            = var.location
   resource_group_name = var.resource_group_name_VMs
@@ -20,8 +20,8 @@ resource "azurerm_network_interface" "nic" {
 }
 
 resource "azurerm_windows_virtual_machine" "winvm" {
-  for_each = locals.ComponentServersWindows
-  
+  for_each = var.ComponentServersWindows
+
   name                  = each.key
   resource_group_name   = var.resource_group_name_VMs
   location              = var.location
@@ -58,7 +58,7 @@ resource "azurerm_windows_virtual_machine" "winvm" {
 }
 
 resource "azurerm_linux_virtual_machine" "linuxvm" {
-  for_each = locals.ComponentServersLinux
+  for_each = var.ComponentServersLinux
 
   name                  = each.key
   resource_group_name   = var.resource_group_name_VMs
@@ -112,7 +112,7 @@ resource "azurerm_virtual_machine_extension" "aad_login" {
 }
 
 resource "azurerm_dev_test_global_vm_shutdown_schedule" "vm_shutdown" {
-  for_each = var.vm_map
+  for_each = merge(var.ComponentServersWindows, var.ComponentServersLinux)
 
   virtual_machine_id = try(
     azurerm_windows_virtual_machine.winvm[each.key].id,
