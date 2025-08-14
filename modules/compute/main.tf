@@ -82,6 +82,16 @@ resource "azurerm_linux_virtual_machine" "linuxvm" {
     version   = "Latest"
   }
 
+  dynamic "plan" {
+    for_each = each.value.os.requires_plan ? [1] : []
+
+    content {
+      name      = each.value.os.sku
+      publisher = each.value.os.publisher
+      product   = each.value.os.offer
+    }
+  }
+
   provision_vm_agent = true
 
   boot_diagnostics {

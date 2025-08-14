@@ -54,18 +54,21 @@ locals {
       publisher = "supportedimagesllc1615494954880"
       offer     = "oracle-linux-9"
       sku       = "oracle-linux-9"
+      requires_plan = true
 
     }
     ubuntu = {
       publisher = "Canonical"
       offer     = "0001-com-ubuntu-server-focal"
       sku       = "20_04-lts-gen2"
+      requires_plan = false
 
     }
     kali = {
       publisher = "kali-linux"
       offer     = "kali"
       sku       = "kali-2023-2"
+      requires_plan = false
 
     }
   }
