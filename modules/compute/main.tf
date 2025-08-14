@@ -66,7 +66,32 @@ resource "azurerm_linux_virtual_machine" "linuxvm" {
   size                  = each.value.vmsize
   admin_username        = var.admin_username
   admin_password        = var.admin_password
-  disable_password_authentication = false
+  disable_password_authentication = true
+
+  admin_ssh_key {
+    username   = "azureuser"
+    public_key = "AAAAB3NzaC1yc2EAAAADAQABAAACAQDBv9xb3Ew9DdPaEytkqtMC4X6h7kKnOJuGtPdPUPUNcn4IVwUCYdmAHgKrdUW87sY+xt3nPgdxTsaBCDP5O8p0ZJrZa95L5t/by1EebDXci93tFMw6SYKz5FtsQ5EvXuBIh9XBaJLUipCIBoOs3vLnZjKLnOAH/+ZqkQizukWd5qfJbvptqsxbisGoRlaVtjnfFmDR028Y9O6CCUEPrZdBUUP2RHiQ6A5f7eaG+hAUPlqE/zjUXX2Qr3cIBjLQD5NafuAN7Hr/Nc4Zs+Ax9VB/h3dgLhGtjQri0p1iWgNFQsJQHyWBipFhOemC2diH/wUOBNNhL4aHtaOU1ku0143tR4gMR8Aq23TFOyn/QMTU/qFQITaCmU8MtIiZt+yO9BesRqeeCOGTwG/ClbhJ2oQaA8xuZUOx5tDxUX7oy3BwW0H3hCmnVJPMIl/KiL88Jv8P2v2Y9plBeHkzMvy3Eoxd6aLC90EU3875PAjcGs+3ryzsN2B+Nb/qUce5wnmGc3Cf8iMjHI4kBlpbDHePIgVQyb3kaozJcV/YWl7TBJhXKRVU+HKnfcpxJs1aKaSDfkxv4Jk1VUU7hERsFVJ68+ZomtZZylx3fcix5IjO98FwpqMoZgtF/b5aqablQb/S06+p6pWnoA3Y7wLXrujChTn5eIZqypAf8uGPbJoKyr3WhQ=="
+  }
+
+
+  custom_data = base64encode(<<EOF
+    #cloud-config
+    write_files:
+      - path: /etc/ssh/keys/authorized_keys
+        owner: root:root
+        permissions: '0644'
+        content: |
+          $(cat ~/.ssh/id_rsa.pub)
+
+    runcmd:
+      - mkdir -p /etc/ssh/keys
+      - chmod 755 /etc/ssh/keys
+      - sed -i '/AuthorizedKeysFile/ s|$| /etc/ssh/keys/authorized_keys|' /etc/ssh/sshd_config
+      - systemctl reload sshd
+    EOF
+  )
+
+
   network_interface_ids = [azurerm_network_interface.nic[each.key].id]
 
   os_disk {
@@ -119,6 +144,8 @@ resource "azurerm_virtual_machine_extension" "aad_login" {
   publisher            = "Microsoft.Azure.ActiveDirectory.LinuxSSH"
   type                 = "AadLoginForLinux"
   type_handler_version = "1.0"
+  settings             = jsonencode({})
+  auto_upgrade_minor_version = true
 }
 
 resource "azurerm_dev_test_global_vm_shutdown_schedule" "vm_shutdown" {

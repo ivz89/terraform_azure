@@ -52,9 +52,9 @@ locals {
 
     oracle = {
       publisher     = "ntegralinc1586961136942"
-      offer         = "ntg_oracle_8_7"
-      sku           = "ntg_oracle_8_7"
-      version       = "1.0.3"
+      offer         = "ntg_oracle_8_6"
+      sku           = "ntg_oracle_8_6"
+      version       = "latest"
       requires_plan = true
     }
     ubuntu = {
