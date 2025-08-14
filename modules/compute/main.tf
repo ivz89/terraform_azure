@@ -22,7 +22,7 @@ resource "azurerm_network_interface" "nic" {
 resource "azurerm_windows_virtual_machine" "winvm" {
   for_each = {
     for k, v in var.vm_map : k => v
-    if can(regex("Windows", lower(v.os.publisher)))
+    if can(regex("Windows", lower(v.os.custom_tag)))
   }
   name                  = each.key
   resource_group_name   = var.resource_group_name_VMs
@@ -62,7 +62,7 @@ resource "azurerm_windows_virtual_machine" "winvm" {
 resource "azurerm_linux_virtual_machine" "linuxvm" {
   for_each = {
     for k, v in var.vm_map : k => v
-    if can(regex("Linux", lower(v.os.publisher)))
+    if can(regex("Linux", lower(v.os.custom_tag)))
   }
   name                  = each.key
   resource_group_name   = var.resource_group_name_VMs
