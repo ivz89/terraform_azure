@@ -4,7 +4,7 @@ resource "azurerm_resource_group" "VMs" {
 }
 
 resource "azurerm_network_interface" "nic" {
-  for_each            = merge(var.ComponentServersWindows, var.ComponentServersLinux)
+  for_each            = var.nic_map_flat
   name                = "nic-${each.key}"
   location            = var.location
   resource_group_name = var.resource_group_name_VMs
@@ -98,7 +98,7 @@ resource "azurerm_linux_virtual_machine" "linuxvm" {
     }
   }
 
-  provision_vm_agent = true
+  provision_vm_agent = false
 
   boot_diagnostics {
     storage_account_uri = var.storage_account_uri

@@ -38,3 +38,7 @@ variable "ComponentServersLinux" {
 variable "ComponentServersWindows" {
   type = map(any)
 }
+
+variable "nic_map_flat" {
+  type = map(any)
+}

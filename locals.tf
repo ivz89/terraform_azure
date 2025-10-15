@@ -9,10 +9,40 @@ locals {
   }
 
   ComponentServersLinux = {
-    "LogCollector-01" = { ip = "10.0.0.31", vmsize = "Standard_D2_v4", os = local.os.oracle, subnet = module.network_core.subnet_ids["VMsubnet"],  identity = "SystemAssigned" }
+    "LogCollector-01" = { ip = "10.0.0.31", vmsize = "Standard_D2_v4", os = local.os.oracle, ip_subnets = [
+        { name = "VM", ip = "10.0.0.31", subnet = module.network_core.subnet_ids["VMsubnet"] }
+      ],  identity = "SystemAssigned" }
+    "FortiGate-01" = { ip = "10.0.0.10", vmsize = "Standard_D2_v4", os = local.os.oracle, ip_subnets = [
+        { name = "External", ip = "10.0.0.10", subnet = module.network_core.subnet_ids["FortiGateExternal"] },
+        { name = "Internal", ip = "10.0.1.10", subnet = module.network_core.subnet_ids["FortiGateInternal"] }
+      ],  identity = "SystemAssigned" }
     #"Attckr-01"  = { ip = "10.0.0.32", vmsize = "Standard_F4s_v2", os = local.os.kali, subnet = module.network_core.subnet_ids["VMsubnet"] }
     #"Nix-Srv3"  = { ip = "10.0.0.33", vmsize = "Standard_D2_v4", os = "Ubuntu", subnet = module.network_core.subnet_ids["VMsubnet"] }
     #"LogCollector-02" = { ip = "10.0.0.34", vmsize = "Standard_D2_v4", os = local.os.centos, subnet = module.network_core.subnet_ids["VMsubnet"],  identity = "SystemAssigned" }
+  }
+}
+
+locals {
+  nic_map = {
+    for vm_name, vm in merge(local.ComponentServersWindows, local.ComponentServersLinux) :
+    vm_name => [
+      for nic in vm.ip_subnets : {
+        nic_key  = "${vm_name}-${nic.name}"
+        vm_name  = vm_name
+        vmsize   = vm.vmsize
+        os       = vm.os
+        identity = vm.identity
+        ip       = nic.ip
+        subnet   = nic.subnet
+      }
+    ]
+  }
+}
+
+locals {
+  nic_map_flat = {
+    for nic_obj in flatten([for v in local.nic_map : v]) :
+      nic_obj.nic_key => nic_obj
   }
 }
 
@@ -71,6 +101,14 @@ locals {
       sku       = "kali-2023-2"
       version   = "Latest"
       requires_plan = false
+
+    }
+    fortigate = {
+      publisher = "FortiNet"
+      offer     = "fortinet_fortigate-vm_v5"
+      sku       = "fortinet_fg-vm_payg_2023"
+      version   = "Latest"
+      requires_plan = true
 
     }
   }
