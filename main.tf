@@ -49,4 +49,5 @@ module "compute" {
   storage_account_uri     = module.storage.storage_account_primary_blob_endpoint
   ComponentServersLinux   = local.ComponentServersLinux
   ComponentServersWindows = local.ComponentServersWindows
+  nic_map_flat            = local.nic_map_flat
 }
