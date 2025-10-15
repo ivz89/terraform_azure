@@ -104,7 +104,7 @@ locals {
 
     }
     fortigate = {
-      publisher = "FortiNet"
+      publisher = "fortinet"
       offer     = "fortinet_fortigate-vm_v5"
       sku       = "fortinet_fg-vm_payg_2023"
       version   = "Latest"
