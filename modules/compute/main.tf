@@ -104,7 +104,7 @@ resource "azurerm_linux_virtual_machine" "linuxvm" {
     }
   }
 
-  provision_vm_agent = false
+  provision_vm_agent = true
 
   boot_diagnostics {
     storage_account_uri = var.storage_account_uri
