@@ -117,18 +117,6 @@ resource "azurerm_linux_virtual_machine" "linuxvm" {
   depends_on = [azurerm_resource_group.VMs]
 }
 
-resource "azurerm_virtual_machine_extension" "aad_login" {
-  for_each = azurerm_linux_virtual_machine.linuxvm
-
-  name                 = "AADLoginForLinux"
-  virtual_machine_id   = each.value.id
-  publisher            = "Microsoft.Azure.ActiveDirectory.LinuxSSH"
-  type                 = "AadLoginForLinux"
-  type_handler_version = "1.0"
-  settings             = jsonencode({})
-  auto_upgrade_minor_version = true
-}
-
 resource "azurerm_dev_test_global_vm_shutdown_schedule" "vm_shutdown" {
   for_each = merge(var.ComponentServersWindows, var.ComponentServersLinux)
 
@@ -172,3 +160,18 @@ resource "azurerm_network_security_rule" "allow_rdp" {
   network_security_group_name = each.value.name
   
 }
+
+/*
+
+resource "azurerm_virtual_machine_extension" "aad_login" {
+  for_each = azurerm_linux_virtual_machine.linuxvm
+
+  name                 = "AADLoginForLinux"
+  virtual_machine_id   = each.value.id
+  publisher            = "Microsoft.Azure.ActiveDirectory.LinuxSSH"
+  type                 = "AadLoginForLinux"
+  type_handler_version = "1.0"
+  settings             = jsonencode({})
+  auto_upgrade_minor_version = true
+}
+*/
