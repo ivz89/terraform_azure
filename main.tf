@@ -2,7 +2,7 @@ module "network_core" {
   source              = "./modules/network_core"
   vnet_name           = "iv-dev-vnet"
   vnet_cidr           = "10.0.0.0/16"
-  subnet_names        = ["VMsubnet", "GatewaySubnet"]
+  subnet_names        = ["VMsubnet", "GatewaySubnet", "FortiGateExternal", "FortiGateInternal", "FortiGateProtected"]
   location            = var.location
   resource_group_name = "iv-dev-rg-Network"
   prefix              = "iv-dev"
