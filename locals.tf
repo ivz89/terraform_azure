@@ -12,7 +12,7 @@ locals {
     "LogCollector-01" = { vmsize = "Standard_D2_v4", os = local.os.oracle,  identity = "SystemAssigned",ip_subnets = [
         { name = "Primary", ip = "10.0.0.31", subnet = module.network_core.subnet_ids["VMsubnet"] }
       ],  identity = "SystemAssigned" }
-    "FortiGate-01" = { vmsize = "Standard_D2_v4", os = local.os.oracle,  identity = "SystemAssigned", ip_subnets = [
+    "FortiGate-01" = { vmsize = "Standard_D2_v4", os = local.os.fortigate,  identity = "SystemAssigned", ip_subnets = [
         { name = "External", ip = "10.0.2.4", subnet = module.network_core.subnet_ids["FortiGateExternal"] },
         { name = "Internal", ip = "10.0.3.4", subnet = module.network_core.subnet_ids["FortiGateInternal"] }
       ]}
