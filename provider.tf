@@ -22,8 +22,8 @@ provider "azurerm" {
       delete_os_disk_on_deletion = true
     }
   }
-  //subscription_id = var.sub_id
-  use_oidc        = true   
+  //subscription_id = var.sub_id  ## For local testing
+  use_oidc        = true   ## For deployment via GitHub Actions
 }
 
 provider "azuread" {

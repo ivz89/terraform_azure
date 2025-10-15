@@ -28,7 +28,10 @@ resource "azurerm_windows_virtual_machine" "winvm" {
   size                  = each.value.vmsize
   admin_username        = var.admin_username
   admin_password        = var.admin_password
-  network_interface_ids = [azurerm_network_interface.nic[each.key].id]
+  network_interface_ids = [
+    for nic_key, nic in azurerm_network_interface.nic :
+    nic.id if var.nic_map_flat[nic_key].vm_name == each.key
+  ]
 
   os_disk {
     name                 = "osdisk-${each.key}"
@@ -73,7 +76,10 @@ resource "azurerm_linux_virtual_machine" "linuxvm" {
     public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDBv9xb3Ew9DdPaEytkqtMC4X6h7kKnOJuGtPdPUPUNcn4IVwUCYdmAHgKrdUW87sY+xt3nPgdxTsaBCDP5O8p0ZJrZa95L5t/by1EebDXci93tFMw6SYKz5FtsQ5EvXuBIh9XBaJLUipCIBoOs3vLnZjKLnOAH/+ZqkQizukWd5qfJbvptqsxbisGoRlaVtjnfFmDR028Y9O6CCUEPrZdBUUP2RHiQ6A5f7eaG+hAUPlqE/zjUXX2Qr3cIBjLQD5NafuAN7Hr/Nc4Zs+Ax9VB/h3dgLhGtjQri0p1iWgNFQsJQHyWBipFhOemC2diH/wUOBNNhL4aHtaOU1ku0143tR4gMR8Aq23TFOyn/QMTU/qFQITaCmU8MtIiZt+yO9BesRqeeCOGTwG/ClbhJ2oQaA8xuZUOx5tDxUX7oy3BwW0H3hCmnVJPMIl/KiL88Jv8P2v2Y9plBeHkzMvy3Eoxd6aLC90EU3875PAjcGs+3ryzsN2B+Nb/qUce5wnmGc3Cf8iMjHI4kBlpbDHePIgVQyb3kaozJcV/YWl7TBJhXKRVU+HKnfcpxJs1aKaSDfkxv4Jk1VUU7hERsFVJ68+ZomtZZylx3fcix5IjO98FwpqMoZgtF/b5aqablQb/S06+p6pWnoA3Y7wLXrujChTn5eIZqypAf8uGPbJoKyr3WhQ=="
   }
 
-  network_interface_ids = [azurerm_network_interface.nic[each.key].id]
+  network_interface_ids = [
+    for nic_key, nic in azurerm_network_interface.nic :
+    nic.id if var.nic_map_flat[nic_key].vm_name == each.key
+  ]
 
   os_disk {
     name                 = "osdisk-${each.key}"
