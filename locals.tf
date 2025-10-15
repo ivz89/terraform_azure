@@ -21,7 +21,7 @@ locals {
     #"LogCollector-02" = { ip = "10.0.0.34", vmsize = "Standard_D2_v4", os = local.os.centos, subnet = module.network_core.subnet_ids["VMsubnet"],  identity = "SystemAssigned" }
   }
 }
-
+ 
 locals {
   nic_map = {
     for vm_name, vm in merge(local.ComponentServersWindows, local.ComponentServersLinux) :
