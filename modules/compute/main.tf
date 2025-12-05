@@ -170,17 +170,16 @@ resource "azurerm_network_security_rule" "allow_rdp" {
   
 }
 
-/*
+
 
 resource "azurerm_virtual_machine_extension" "aad_login" {
   for_each = azurerm_linux_virtual_machine.linuxvm
 
-  name                 = "AADLoginForLinux"
+  name                 = "AADSSHLoginForLinux"
   virtual_machine_id   = each.value.id
-  publisher            = "Microsoft.Azure.ActiveDirectory.LinuxSSH"
-  type                 = "AadLoginForLinux"
+  publisher            = "Microsoft.Azure.ActiveDirectory"
+  type                 = "AADSSHLoginForLinux"
   type_handler_version = "1.0"
   settings             = jsonencode({})
   auto_upgrade_minor_version = true
 }
-*/
