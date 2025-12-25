@@ -182,4 +182,8 @@ resource "azurerm_virtual_machine_extension" "aad_login" {
   type_handler_version = "1.0"
   settings             = jsonencode({})
   auto_upgrade_minor_version = true
+
+  depends_on = [
+    azurerm_linux_virtual_machine.linuxvm
+  ]
 }
