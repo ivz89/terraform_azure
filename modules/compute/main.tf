@@ -172,7 +172,7 @@ resource "azurerm_network_security_rule" "allow_rdp" {
 
 
 
-resource "azurerm_virtual_machine_extension" "aad_login" {
+resource "azurerm_virtual_machine_extension" "aad_login_linux" {
   for_each = azurerm_linux_virtual_machine.linuxvm
 
   name                 = "AADSSHLoginForLinux"
@@ -188,7 +188,7 @@ resource "azurerm_virtual_machine_extension" "aad_login" {
   ]
 }
 
-resource "azurerm_virtual_machine_extension" "aad_login" {
+resource "azurerm_virtual_machine_extension" "aad_login_win" {
   for_each = azurerm_windows_virtual_machine.winvm
 
   name                 = "AADLoginForWindows"
