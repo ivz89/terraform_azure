@@ -187,3 +187,19 @@ resource "azurerm_virtual_machine_extension" "aad_login" {
     azurerm_linux_virtual_machine.linuxvm
   ]
 }
+
+resource "azurerm_virtual_machine_extension" "aad_login" {
+  for_each = azurerm_windows_virtual_machine.winvm
+
+  name                 = "AADLoginForWindows"
+  virtual_machine_id   = each.value.id
+  publisher            = "Microsoft.Azure.ActiveDirectory"
+  type                 = "AADLoginForWindows"
+  type_handler_version = "1.0"
+  settings             = jsonencode({})
+  auto_upgrade_minor_version = true
+
+  depends_on = [
+    azurerm_windows_virtual_machine.winvm
+  ]
+}

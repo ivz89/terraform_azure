@@ -1,7 +1,7 @@
 locals {
   ComponentServersWindows = {
 
-    #"DC-01" = { ip = "10.0.0.10", vmsize = "Standard_D2_v4", os = local.os.wserver, subnet = module.network_core.subnet_ids["VMsubnet"],  identity = "SystemAssigned" }
+    "DC-01" = { ip = "10.0.0.10", vmsize = "Standard_D2_v4", os = local.os.wserver, subnet = module.network_core.subnet_ids["VMsubnet"],  identity = "SystemAssigned" }
     #"WinWrk-01"   = {ip = "10.0.0.21", vmsize = "Standard_D2_v4", os = local.os.w10, subnet = module.network_core.subnet_ids["VMsubnet"]}
     #"Attckr-02" = {ip = "10.0.0.22", vmsize = "Standard_D2_v4", os = local.os.w10, subnet = module.network_core.subnet_ids["VMsubnet"]}
     #"MSSQL-01" = { ip = "10.0.0.23", vmsize = "Standard_D2_v4", os = local.os.mssql, subnet = module.network_core.subnet_ids["VMsubnet"],  identity = "SystemAssigned" }
