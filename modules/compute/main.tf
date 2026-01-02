@@ -191,7 +191,7 @@ resource "azurerm_virtual_machine_extension" "aad_login_linux" {
 resource "azurerm_virtual_machine_extension" "aad_login_win" {
   for_each = azurerm_windows_virtual_machine.winvm
 
-  name                 = "AADLoginForWindows"
+  name                 = "AADLogin"
   virtual_machine_id   = each.value.id
   publisher            = "Microsoft.Azure.ActiveDirectory"
   type                 = "AADLoginForWindows"

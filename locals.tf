@@ -1,7 +1,7 @@
 locals {
   ComponentServersWindows = {
 
-    "DC-01" = { vmsize = "Standard_D2_v4", os = local.os.wserver, identity = "SystemAssigned", ip_subnets = [{ name = "Primary", ip = "10.0.0.10", subnet = module.network_core.subnet_ids["VMsubnet"] }]}
+    #"DC-01" = { vmsize = "Standard_D2_v4", os = local.os.wserver, identity = "SystemAssigned", ip_subnets = [{ name = "Primary", ip = "10.0.0.10", subnet = module.network_core.subnet_ids["VMsubnet"] }]}
     #"WinWrk-01"   = { vmsize = "Standard_D2_v4", os = local.os.w10, identity = "SystemAssigned", ip_subnets = [{ name = "Primary", ip = "10.0.0.21", subnet = module.network_core.subnet_ids["VMsubnet"] }]}
     #"Attckr-02" = { vmsize = "Standard_D2_v4", os = local.os.w10, identity = "SystemAssigned", ip_subnets = [{ name = "Primary", ip = "10.0.0.22", subnet = module.network_core.subnet_ids["VMsubnet"] }]}
     #"MSSQL-01" = { vmsize = "Standard_D2_v4", os = local.os.mssql, identity = "SystemAssigned", ip_subnets = [{ name = "Primary", ip = "10.0.0.23", subnet = module.network_core.subnet_ids["VMsubnet"] }]}
@@ -9,7 +9,7 @@ locals {
   }
 
   ComponentServersLinux = {
-    "LogCollector-01" = { vmsize = "Standard_D2_v4", os = local.os.oracle,  identity = "SystemAssigned",ip_subnets = [{ name = "Primary", ip = "10.0.0.31", subnet = module.network_core.subnet_ids["VMsubnet"] }]}
+    #"LogCollector-01" = { vmsize = "Standard_D2_v4", os = local.os.oracle,  identity = "SystemAssigned",ip_subnets = [{ name = "Primary", ip = "10.0.0.31", subnet = module.network_core.subnet_ids["VMsubnet"] }]}
     #"FortiGate-01" = { vmsize = "Standard_D2_v4", os = local.os.fortigate,  identity = "SystemAssigned", ip_subnets = [{ name = "External", ip = "10.0.2.4", subnet = module.network_core.subnet_ids["FortiGateExternal"] },{ name = "Internal", ip = "10.0.3.4", subnet = module.network_core.subnet_ids["FortiGateInternal"] }]}
     #"Attckr-01"  = { vmsize = "Standard_F4s_v2", os = local.os.kali,  identity = "SystemAssigned",ip_subnets = [{ name = "Primary", ip = "10.0.0.32", subnet = module.network_core.subnet_ids["VMsubnet"] }]}
     #"LogCollector-02" = { vmsize = "Standard_D2_v4", os = local.os.oracle,  identity = "SystemAssigned",ip_subnets = [{ name = "Primary", ip = "10.0.0.34", subnet = module.network_core.subnet_ids["VMsubnet"] }]}
