@@ -94,7 +94,7 @@ locals {
       offer     = "kali"
       sku       = "kali-2025-2"
       version   = "Latest"
-      requires_plan = false
+      requires_plan = true
 
     }
     fortigate = {
