@@ -92,7 +92,7 @@ locals {
     kali = {
       publisher = "kali-linux"
       offer     = "kali"
-      sku       = "kali-2023-2"
+      sku       = "kali-2025"
       version   = "Latest"
       requires_plan = false
 
